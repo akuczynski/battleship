@@ -73,11 +73,18 @@ namespace Battleship
 
             // create ships 
             var battleship = new Ship(0, 0, 5, ShipLayout.Horizontal);
-            battleship.SetOnShipSunkAction(() => UpdateGameStatusLabel());
+            var destroyer1 = new Ship(0, 1, 4, ShipLayout.Horizontal);
+            var destroyer2 = new Ship(0, 2, 4, ShipLayout.Horizontal);
 
             _ships.Add(battleship);
+            _ships.Add(destroyer1);
+            _ships.Add(destroyer2);
 
-            AddShipToTheBoard(battleship); 
+            _ships.ForEach(ship =>
+            {
+                ship.SetOnShipSunkAction(() => UpdateGameStatusLabel());
+                AddShipToTheBoard(ship);
+            });
         }
 
         private void AddShipToTheBoard(Ship ship)
