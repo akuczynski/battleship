@@ -9,9 +9,9 @@ using Battleship.Controls;
 namespace Battleship
 {
 
+    // Game board has only 3 ships: 
     // 1 x Battleship  (5 squares)
     // 2 x Destroyers ( 4 squares) 
-
     internal class GameBoard
     {
         private bool[,] _gameMatrix;
@@ -59,9 +59,9 @@ namespace Battleship
                     boardCell.Init(BoardCellType.Empty);
                 }
 
-#if DEBUG
-                boardCell.PerformClick();  //    for debug only 
-#endif
+//#if DEBUG
+//                boardCell.PerformClick();  //  for manual testing only 
+//#endif
             }
 
             cells.Reset();
@@ -125,13 +125,13 @@ namespace Battleship
 
                 if (layout == ShipLayout.Horizontal)
                 {
-                    startPosX = random.Next(0, 9 - size);
-                    startPosY = random.Next(0, 9);
+                    startPosX = random.Next(0, 11 - size);
+                    startPosY = random.Next(0, 10);
                 }
                 else
                 {
-                    startPosX = random.Next(0, 9);
-                    startPosY = random.Next(0, 9 - size);
+                    startPosX = random.Next(0, 10);
+                    startPosY = random.Next(0, 11 - size);
                 }
 
                 // check ships position overlapping 
