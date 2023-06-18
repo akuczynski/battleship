@@ -31,8 +31,7 @@ namespace Battleship
         {
             GenerateNewBoard();
             InitializeBoardCells(gamePanel);
-
-            _gameStatus.Text = "Number of uncovered ships: 3"; 
+            UpdateGameStatusLabel();
         }
 
         private void InitializeBoardCells(TableLayoutPanel gamePanel)
@@ -46,11 +45,25 @@ namespace Battleship
                 var column = gamePanel.GetColumn(boardCell);
 
                 var hasShip = _gameMatrix[column, row];
-                boardCell.Init(hasShip ? BoardCellType.ShipCell: BoardCellType.Empty);
+
+                if (hasShip)
+                {
+                    var ship = GetShipOnPosXY(column, row);
+
+                    ship.AddBoardCell(boardCell);
+                    boardCell.Init(BoardCellType.ShipCell);
+
+                }
+                else
+                {
+                    boardCell.Init(BoardCellType.Empty);
+                }
             }
 
             cells.Reset();
         }
+
+     
 
         private void GenerateNewBoard()
         {
@@ -60,6 +73,8 @@ namespace Battleship
 
             // create ships 
             var battleship = new Ship(0, 0, 5, ShipLayout.Horizontal);
+            battleship.SetOnShipSunkAction(() => UpdateGameStatusLabel());
+
             _ships.Add(battleship);
 
             AddShipToTheBoard(battleship); 
@@ -74,7 +89,32 @@ namespace Battleship
             // for vertical ship layout
             for (int j = ship.StartPosY; j < ship.EndPosY; j++)
                 _gameMatrix[ship.StartPosX, j] = true;
+        }
 
+        private Ship? GetShipOnPosXY(int column, int row)
+        {
+            foreach(var ship in _ships)
+            {
+                if (column >= ship.StartPosX && column <= ship.EndPosX)
+                    if (row >= ship.StartPosY && row <= ship.EndPosY)
+                        return ship;
+            }
+
+            return null;
+        }
+
+        private void UpdateGameStatusLabel()
+        {
+            var numberOfUncoveredShips =  _ships.Where(x => !x.IsSunk).Count();
+
+            if (numberOfUncoveredShips == 0) 
+            {
+                _gameStatus.Text = $"Congratulations !\r\nThere are no more ships to uncover.";
+            }
+            else
+            {
+                _gameStatus.Text = $"Number of uncovered ships: {numberOfUncoveredShips}";
+            }           
         }
     } 
-}
+} 

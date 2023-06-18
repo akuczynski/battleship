@@ -26,12 +26,6 @@
             Click += BoardCell_Click;
         }
 
-        public new void Dispose()
-        {
-            this.Click -= BoardCell_Click;
-            base.Dispose();
-        }
-
         public void Init(BoardCellType type)
         {
             Type = type;
@@ -41,7 +35,19 @@
             Enabled = true;
         }
 
-        public void Uncover()
+        public new void Dispose()
+        {
+            this.Click -= BoardCell_Click;
+            base.Dispose();
+        }
+
+        private void BoardCell_Click(object? sender, EventArgs e)
+        {
+            var boardCell = sender as BoardCell;
+            boardCell?.Uncover();
+        }
+
+        private void Uncover()
         {
             State = BoardState.Uncovered;
             
@@ -51,14 +57,8 @@
             }
             else if (Type == BoardCellType.ShipCell)
             {
-                BackColor = Color.Red;
+                BackColor = Color.Red; 
             }
-        }
-
-        private void BoardCell_Click(object? sender, EventArgs e)
-        {
-            var boardCell = sender as BoardCell;
-            boardCell?.Uncover();
         }
     }
 }

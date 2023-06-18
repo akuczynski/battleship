@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Battleship.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +13,18 @@ namespace Battleship
         Vertical
     }
 
-    internal class Ship
+    internal class Ship : IDisposable
     {
         public int StartPosX { get; }
         public int StartPosY { get; }
         public int EndPosX { get; }
         public int EndPosY { get; }
         public int Size { get; }
-        public bool IsSink { get; private set; }
+        public bool IsSunk => boardCells.All(x => x.State == BoardState.Uncovered);
+
+        private Action _onShipSunk;
+
+        public IList<BoardCell> boardCells { get; private set; }
 
         public Ship(int startPosX, int startPosY, int size, ShipLayout layout)
         {
@@ -38,12 +43,39 @@ namespace Battleship
                 EndPosY = StartPosY + size;
             }
 
-            IsSink = false;
+            boardCells = new List<BoardCell>();
+        }
+        
+        public void SetOnShipSunkAction(Action onShipSunk)
+        {
+            _onShipSunk = onShipSunk;
         }
 
-        public void Sink()
+        public void Dispose()
         {
-            IsSink = true;
+            foreach (var boardCell in boardCells)
+            {
+                boardCell.Click -= OnShipCellClicked;
+            }
+        }
+
+        public void AddBoardCell(BoardCell boardCell)
+        {
+            boardCells.Add(boardCell);
+            boardCell.Click += OnShipCellClicked;
+        }
+
+        private void OnShipCellClicked(object? sender, EventArgs e)
+        {
+            var boardCell = sender as BoardCell;
+
+            if (IsSunk)
+            {
+                _onShipSunk();
+            }
+
+            // react to click event only once ! 
+            boardCell!.Click -= OnShipCellClicked;
         }
     }
 }
