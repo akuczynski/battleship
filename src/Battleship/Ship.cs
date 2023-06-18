@@ -13,6 +13,12 @@ namespace Battleship
         Vertical
     }
 
+    public enum ShipType
+    {
+        Battleship = 5,
+        Destroyer = 4
+    }
+
     internal class Ship : IDisposable
     {
         public int StartPosX { get; }

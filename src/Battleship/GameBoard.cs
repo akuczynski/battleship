@@ -58,12 +58,15 @@ namespace Battleship
                 {
                     boardCell.Init(BoardCellType.Empty);
                 }
+
+#if DEBUG
+                boardCell.PerformClick();  //    for debug only 
+#endif
             }
 
             cells.Reset();
         }
 
-     
 
         private void GenerateNewBoard()
         {
@@ -72,13 +75,9 @@ namespace Battleship
             _ships = new List<Ship>();
 
             // create ships 
-            var battleship = new Ship(0, 0, 5, ShipLayout.Horizontal);
-            var destroyer1 = new Ship(0, 1, 4, ShipLayout.Horizontal);
-            var destroyer2 = new Ship(0, 2, 4, ShipLayout.Horizontal);
-
-            _ships.Add(battleship);
-            _ships.Add(destroyer1);
-            _ships.Add(destroyer2);
+            CreateNewShip(ShipType.Battleship); 
+            CreateNewShip(ShipType.Destroyer); 
+            CreateNewShip(ShipType.Destroyer); 
 
             _ships.ForEach(ship =>
             {
@@ -90,7 +89,7 @@ namespace Battleship
         private void AddShipToTheBoard(Ship ship)
         {
             // for horizontal ship layout 
-            for(int i = ship.StartPosX; i < ship.EndPosX; i++)
+            for (int i = ship.StartPosX; i < ship.EndPosX; i++)
                 _gameMatrix[i, ship.StartPosY] = true;
 
             // for vertical ship layout
@@ -100,7 +99,7 @@ namespace Battleship
 
         private Ship? GetShipOnPosXY(int column, int row)
         {
-            foreach(var ship in _ships)
+            foreach (var ship in _ships)
             {
                 if (column >= ship.StartPosX && column <= ship.EndPosX)
                     if (row >= ship.StartPosY && row <= ship.EndPosY)
@@ -110,18 +109,80 @@ namespace Battleship
             return null;
         }
 
+        private void CreateNewShip(ShipType shipType)
+        {
+            Random random = new Random();
+            int startPosX, startPosY;
+            var isOverlappingPosition = false;
+            int size = (int) shipType ;
+
+            ShipLayout layout;
+
+            do
+            {
+                // generate some random position for a new ship 
+                layout = random.Next() % 2 == 0 ? ShipLayout.Horizontal : ShipLayout.Vertical;
+
+                if (layout == ShipLayout.Horizontal)
+                {
+                    startPosX = random.Next(0, 9 - size);
+                    startPosY = random.Next(0, 9);
+                }
+                else
+                {
+                    startPosX = random.Next(0, 9);
+                    startPosY = random.Next(0, 9 - size);
+                }
+
+                // check ships position overlapping 
+                isOverlappingPosition = false;
+                if (layout == ShipLayout.Horizontal)
+                {
+                    for (int i = Math.Max(startPosX - 1, 0); i < Math.Min(startPosX + size + 1, 9); i++)
+                    {
+                        // there should be one empty cell between ships 
+                        if (GetShipOnPosXY(i, startPosY) != null
+                         || GetShipOnPosXY(i, startPosY - 1) != null
+                         || GetShipOnPosXY(i, startPosY + 1) != null)
+                        {
+                            isOverlappingPosition = true;
+                            break;
+                        }
+                    }
+                } 
+                else
+                {
+                    for (int j = Math.Max(startPosY - 1, 0); j < Math.Min(startPosY + size + 1, 9); j++)
+                    {
+                        // there should be one empty cell between ships 
+                        if (GetShipOnPosXY(startPosX, j) != null 
+                        || GetShipOnPosXY(startPosX - 1, j) != null
+                        || GetShipOnPosXY(startPosX + 1, j) != null)
+                        {
+                            isOverlappingPosition = true;
+                            break;
+                        }
+                    }
+                }
+
+            } while (isOverlappingPosition);
+
+            _ships.Add(new Ship(startPosX, startPosY, size, layout));
+        }
+
+
         private void UpdateGameStatusLabel()
         {
-            var numberOfUncoveredShips =  _ships.Where(x => !x.IsSunk).Count();
+            var numberOfUncoveredShips = _ships.Where(x => !x.IsSunk).Count();
 
-            if (numberOfUncoveredShips == 0) 
+            if (numberOfUncoveredShips == 0)
             {
                 _gameStatus.Text = $"Congratulations !\r\nThere are no more ships to uncover.";
             }
             else
             {
                 _gameStatus.Text = $"Number of uncovered ships: {numberOfUncoveredShips}";
-            }           
+            }
         }
-    } 
-} 
+    }
+}
