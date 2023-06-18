@@ -153,7 +153,9 @@
             boardCell99 = new BoardCell();
             boardCell100 = new BoardCell();
             panel2 = new Panel();
+            label21 = new Label();
             button1 = new Button();
+            label22 = new Label();
             panel1.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -1443,6 +1445,8 @@
             // 
             panel2.AutoSize = true;
             panel2.BackColor = SystemColors.AppWorkspace;
+            panel2.Controls.Add(label22);
+            panel2.Controls.Add(label21);
             panel2.Controls.Add(button1);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 553);
@@ -1450,16 +1454,34 @@
             panel2.Size = new Size(614, 58);
             panel2.TabIndex = 1;
             // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(26, 19);
+            label21.Name = "label21";
+            label21.Size = new Size(98, 15);
+            label21.TabIndex = 1;
+            label21.Text = "Number of ships:";
+            // 
             // button1
             // 
             button1.BackColor = SystemColors.HotTrack;
             button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(238, 6);
+            button1.Location = new Point(249, 6);
             button1.Name = "button1";
             button1.Size = new Size(116, 40);
             button1.TabIndex = 0;
-            button1.Text = "Start";
+            button1.Text = "New Game";
             button1.UseVisualStyleBackColor = false;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(124, 19);
+            label22.Name = "label22";
+            label22.Size = new Size(13, 15);
+            label22.TabIndex = 2;
+            label22.Text = "2";
             // 
             // MainForm
             // 
@@ -1478,6 +1500,7 @@
             flowLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1610,5 +1633,7 @@
         private Label label18;
         private Label label19;
         private Label label20;
+        private Label label21;
+        private Label label22;
     }
 }
