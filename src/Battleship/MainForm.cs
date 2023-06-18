@@ -1,3 +1,5 @@
+using Battleship.Controls;
+
 namespace Battleship
 {
     public partial class MainForm : Form
@@ -12,16 +14,9 @@ namespace Battleship
         private void NewGameButton_Click_1(object sender, EventArgs e)
         {
             var gameBoard = new GameBoard();
+            var cells = GameBoardPanel.Controls.GetEnumerator();
 
-            for (var row = 0; row < 10; row++)
-            {
-                for (var column = 0; row < 10; row++)
-                {
-                    var boardCell = GameBoardPanel.GetControlFromPosition(column, row);
-
-
-                }
-            }
+            gameBoard.StartNewGame(cells);
         }
     }
 }
