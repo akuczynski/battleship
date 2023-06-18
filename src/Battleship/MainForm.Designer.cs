@@ -1,4 +1,6 @@
-﻿namespace Battleship
+﻿using Battleship.Controls;
+
+namespace Battleship
 {
     partial class MainForm
     {
@@ -51,7 +53,7 @@
             label8 = new Label();
             label9 = new Label();
             label10 = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            GameBoardPanel = new TableLayoutPanel();
             boardCell1 = new BoardCell();
             boardCell2 = new BoardCell();
             boardCell3 = new BoardCell();
@@ -153,13 +155,12 @@
             boardCell99 = new BoardCell();
             boardCell100 = new BoardCell();
             panel2 = new Panel();
-            label21 = new Label();
-            button1 = new Button();
-            label22 = new Label();
+            GameStatusLabel = new Label();
+            NewGameButton = new Button();
             panel1.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
+            GameBoardPanel.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -167,7 +168,7 @@
             // 
             panel1.Controls.Add(flowLayoutPanel2);
             panel1.Controls.Add(flowLayoutPanel1);
-            panel1.Controls.Add(tableLayoutPanel1);
+            panel1.Controls.Add(GameBoardPanel);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -412,138 +413,139 @@
             label10.TabIndex = 10;
             label10.Text = "J";
             // 
-            // tableLayoutPanel1
+            // GameBoardPanel
             // 
-            tableLayoutPanel1.ColumnCount = 10;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.Controls.Add(boardCell1, 0, 0);
-            tableLayoutPanel1.Controls.Add(boardCell2, 1, 0);
-            tableLayoutPanel1.Controls.Add(boardCell3, 2, 0);
-            tableLayoutPanel1.Controls.Add(boardCell4, 3, 0);
-            tableLayoutPanel1.Controls.Add(boardCell5, 4, 0);
-            tableLayoutPanel1.Controls.Add(boardCell6, 5, 0);
-            tableLayoutPanel1.Controls.Add(boardCell7, 6, 0);
-            tableLayoutPanel1.Controls.Add(boardCell8, 7, 0);
-            tableLayoutPanel1.Controls.Add(boardCell9, 8, 0);
-            tableLayoutPanel1.Controls.Add(boardCell10, 9, 0);
-            tableLayoutPanel1.Controls.Add(boardCell11, 0, 1);
-            tableLayoutPanel1.Controls.Add(boardCell12, 1, 1);
-            tableLayoutPanel1.Controls.Add(boardCell13, 2, 1);
-            tableLayoutPanel1.Controls.Add(boardCell14, 3, 1);
-            tableLayoutPanel1.Controls.Add(boardCell15, 4, 1);
-            tableLayoutPanel1.Controls.Add(boardCell16, 5, 1);
-            tableLayoutPanel1.Controls.Add(boardCell17, 6, 1);
-            tableLayoutPanel1.Controls.Add(boardCell18, 7, 1);
-            tableLayoutPanel1.Controls.Add(boardCell19, 8, 1);
-            tableLayoutPanel1.Controls.Add(boardCell20, 9, 1);
-            tableLayoutPanel1.Controls.Add(boardCell21, 0, 2);
-            tableLayoutPanel1.Controls.Add(boardCell22, 1, 2);
-            tableLayoutPanel1.Controls.Add(boardCell23, 2, 2);
-            tableLayoutPanel1.Controls.Add(boardCell24, 3, 2);
-            tableLayoutPanel1.Controls.Add(boardCell25, 4, 2);
-            tableLayoutPanel1.Controls.Add(boardCell26, 5, 2);
-            tableLayoutPanel1.Controls.Add(boardCell27, 6, 2);
-            tableLayoutPanel1.Controls.Add(boardCell28, 7, 2);
-            tableLayoutPanel1.Controls.Add(boardCell29, 8, 2);
-            tableLayoutPanel1.Controls.Add(boardCell30, 9, 2);
-            tableLayoutPanel1.Controls.Add(boardCell31, 0, 3);
-            tableLayoutPanel1.Controls.Add(boardCell32, 1, 3);
-            tableLayoutPanel1.Controls.Add(boardCell33, 2, 3);
-            tableLayoutPanel1.Controls.Add(boardCell34, 3, 3);
-            tableLayoutPanel1.Controls.Add(boardCell35, 4, 3);
-            tableLayoutPanel1.Controls.Add(boardCell36, 5, 3);
-            tableLayoutPanel1.Controls.Add(boardCell37, 6, 3);
-            tableLayoutPanel1.Controls.Add(boardCell38, 7, 3);
-            tableLayoutPanel1.Controls.Add(boardCell39, 8, 3);
-            tableLayoutPanel1.Controls.Add(boardCell40, 9, 3);
-            tableLayoutPanel1.Controls.Add(boardCell41, 0, 4);
-            tableLayoutPanel1.Controls.Add(boardCell42, 1, 4);
-            tableLayoutPanel1.Controls.Add(boardCell43, 2, 4);
-            tableLayoutPanel1.Controls.Add(boardCell44, 3, 4);
-            tableLayoutPanel1.Controls.Add(boardCell45, 4, 4);
-            tableLayoutPanel1.Controls.Add(boardCell46, 5, 4);
-            tableLayoutPanel1.Controls.Add(boardCell47, 6, 4);
-            tableLayoutPanel1.Controls.Add(boardCell48, 7, 4);
-            tableLayoutPanel1.Controls.Add(boardCell49, 8, 4);
-            tableLayoutPanel1.Controls.Add(boardCell50, 9, 4);
-            tableLayoutPanel1.Controls.Add(boardCell51, 0, 5);
-            tableLayoutPanel1.Controls.Add(boardCell52, 1, 5);
-            tableLayoutPanel1.Controls.Add(boardCell53, 2, 5);
-            tableLayoutPanel1.Controls.Add(boardCell54, 3, 5);
-            tableLayoutPanel1.Controls.Add(boardCell55, 4, 5);
-            tableLayoutPanel1.Controls.Add(boardCell56, 5, 5);
-            tableLayoutPanel1.Controls.Add(boardCell57, 6, 5);
-            tableLayoutPanel1.Controls.Add(boardCell58, 7, 5);
-            tableLayoutPanel1.Controls.Add(boardCell59, 8, 5);
-            tableLayoutPanel1.Controls.Add(boardCell60, 9, 5);
-            tableLayoutPanel1.Controls.Add(boardCell61, 0, 6);
-            tableLayoutPanel1.Controls.Add(boardCell62, 1, 6);
-            tableLayoutPanel1.Controls.Add(boardCell63, 2, 6);
-            tableLayoutPanel1.Controls.Add(boardCell64, 3, 6);
-            tableLayoutPanel1.Controls.Add(boardCell65, 4, 6);
-            tableLayoutPanel1.Controls.Add(boardCell66, 5, 6);
-            tableLayoutPanel1.Controls.Add(boardCell67, 6, 6);
-            tableLayoutPanel1.Controls.Add(boardCell68, 7, 6);
-            tableLayoutPanel1.Controls.Add(boardCell69, 8, 6);
-            tableLayoutPanel1.Controls.Add(boardCell70, 9, 6);
-            tableLayoutPanel1.Controls.Add(boardCell71, 0, 7);
-            tableLayoutPanel1.Controls.Add(boardCell72, 1, 7);
-            tableLayoutPanel1.Controls.Add(boardCell73, 2, 7);
-            tableLayoutPanel1.Controls.Add(boardCell74, 3, 7);
-            tableLayoutPanel1.Controls.Add(boardCell75, 4, 7);
-            tableLayoutPanel1.Controls.Add(boardCell76, 5, 7);
-            tableLayoutPanel1.Controls.Add(boardCell77, 6, 7);
-            tableLayoutPanel1.Controls.Add(boardCell78, 7, 7);
-            tableLayoutPanel1.Controls.Add(boardCell79, 8, 7);
-            tableLayoutPanel1.Controls.Add(boardCell80, 9, 7);
-            tableLayoutPanel1.Controls.Add(boardCell81, 0, 8);
-            tableLayoutPanel1.Controls.Add(boardCell82, 1, 8);
-            tableLayoutPanel1.Controls.Add(boardCell83, 2, 8);
-            tableLayoutPanel1.Controls.Add(boardCell84, 3, 8);
-            tableLayoutPanel1.Controls.Add(boardCell85, 4, 8);
-            tableLayoutPanel1.Controls.Add(boardCell86, 5, 8);
-            tableLayoutPanel1.Controls.Add(boardCell87, 6, 8);
-            tableLayoutPanel1.Controls.Add(boardCell88, 7, 8);
-            tableLayoutPanel1.Controls.Add(boardCell89, 8, 8);
-            tableLayoutPanel1.Controls.Add(boardCell90, 9, 8);
-            tableLayoutPanel1.Controls.Add(boardCell91, 0, 9);
-            tableLayoutPanel1.Controls.Add(boardCell92, 1, 9);
-            tableLayoutPanel1.Controls.Add(boardCell93, 2, 9);
-            tableLayoutPanel1.Controls.Add(boardCell94, 3, 9);
-            tableLayoutPanel1.Controls.Add(boardCell95, 4, 9);
-            tableLayoutPanel1.Controls.Add(boardCell96, 5, 9);
-            tableLayoutPanel1.Controls.Add(boardCell97, 6, 9);
-            tableLayoutPanel1.Controls.Add(boardCell98, 7, 9);
-            tableLayoutPanel1.Controls.Add(boardCell99, 8, 9);
-            tableLayoutPanel1.Controls.Add(boardCell100, 9, 9);
-            tableLayoutPanel1.Location = new Point(57, 30);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 10;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.Size = new Size(500, 500);
-            tableLayoutPanel1.TabIndex = 0;
+            GameBoardPanel.ColumnCount = 10;
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            GameBoardPanel.Controls.Add(boardCell1, 0, 0);
+            GameBoardPanel.Controls.Add(boardCell2, 1, 0);
+            GameBoardPanel.Controls.Add(boardCell3, 2, 0);
+            GameBoardPanel.Controls.Add(boardCell4, 3, 0);
+            GameBoardPanel.Controls.Add(boardCell5, 4, 0);
+            GameBoardPanel.Controls.Add(boardCell6, 5, 0);
+            GameBoardPanel.Controls.Add(boardCell7, 6, 0);
+            GameBoardPanel.Controls.Add(boardCell8, 7, 0);
+            GameBoardPanel.Controls.Add(boardCell9, 8, 0);
+            GameBoardPanel.Controls.Add(boardCell10, 9, 0);
+            GameBoardPanel.Controls.Add(boardCell11, 0, 1);
+            GameBoardPanel.Controls.Add(boardCell12, 1, 1);
+            GameBoardPanel.Controls.Add(boardCell13, 2, 1);
+            GameBoardPanel.Controls.Add(boardCell14, 3, 1);
+            GameBoardPanel.Controls.Add(boardCell15, 4, 1);
+            GameBoardPanel.Controls.Add(boardCell16, 5, 1);
+            GameBoardPanel.Controls.Add(boardCell17, 6, 1);
+            GameBoardPanel.Controls.Add(boardCell18, 7, 1);
+            GameBoardPanel.Controls.Add(boardCell19, 8, 1);
+            GameBoardPanel.Controls.Add(boardCell20, 9, 1);
+            GameBoardPanel.Controls.Add(boardCell21, 0, 2);
+            GameBoardPanel.Controls.Add(boardCell22, 1, 2);
+            GameBoardPanel.Controls.Add(boardCell23, 2, 2);
+            GameBoardPanel.Controls.Add(boardCell24, 3, 2);
+            GameBoardPanel.Controls.Add(boardCell25, 4, 2);
+            GameBoardPanel.Controls.Add(boardCell26, 5, 2);
+            GameBoardPanel.Controls.Add(boardCell27, 6, 2);
+            GameBoardPanel.Controls.Add(boardCell28, 7, 2);
+            GameBoardPanel.Controls.Add(boardCell29, 8, 2);
+            GameBoardPanel.Controls.Add(boardCell30, 9, 2);
+            GameBoardPanel.Controls.Add(boardCell31, 0, 3);
+            GameBoardPanel.Controls.Add(boardCell32, 1, 3);
+            GameBoardPanel.Controls.Add(boardCell33, 2, 3);
+            GameBoardPanel.Controls.Add(boardCell34, 3, 3);
+            GameBoardPanel.Controls.Add(boardCell35, 4, 3);
+            GameBoardPanel.Controls.Add(boardCell36, 5, 3);
+            GameBoardPanel.Controls.Add(boardCell37, 6, 3);
+            GameBoardPanel.Controls.Add(boardCell38, 7, 3);
+            GameBoardPanel.Controls.Add(boardCell39, 8, 3);
+            GameBoardPanel.Controls.Add(boardCell40, 9, 3);
+            GameBoardPanel.Controls.Add(boardCell41, 0, 4);
+            GameBoardPanel.Controls.Add(boardCell42, 1, 4);
+            GameBoardPanel.Controls.Add(boardCell43, 2, 4);
+            GameBoardPanel.Controls.Add(boardCell44, 3, 4);
+            GameBoardPanel.Controls.Add(boardCell45, 4, 4);
+            GameBoardPanel.Controls.Add(boardCell46, 5, 4);
+            GameBoardPanel.Controls.Add(boardCell47, 6, 4);
+            GameBoardPanel.Controls.Add(boardCell48, 7, 4);
+            GameBoardPanel.Controls.Add(boardCell49, 8, 4);
+            GameBoardPanel.Controls.Add(boardCell50, 9, 4);
+            GameBoardPanel.Controls.Add(boardCell51, 0, 5);
+            GameBoardPanel.Controls.Add(boardCell52, 1, 5);
+            GameBoardPanel.Controls.Add(boardCell53, 2, 5);
+            GameBoardPanel.Controls.Add(boardCell54, 3, 5);
+            GameBoardPanel.Controls.Add(boardCell55, 4, 5);
+            GameBoardPanel.Controls.Add(boardCell56, 5, 5);
+            GameBoardPanel.Controls.Add(boardCell57, 6, 5);
+            GameBoardPanel.Controls.Add(boardCell58, 7, 5);
+            GameBoardPanel.Controls.Add(boardCell59, 8, 5);
+            GameBoardPanel.Controls.Add(boardCell60, 9, 5);
+            GameBoardPanel.Controls.Add(boardCell61, 0, 6);
+            GameBoardPanel.Controls.Add(boardCell62, 1, 6);
+            GameBoardPanel.Controls.Add(boardCell63, 2, 6);
+            GameBoardPanel.Controls.Add(boardCell64, 3, 6);
+            GameBoardPanel.Controls.Add(boardCell65, 4, 6);
+            GameBoardPanel.Controls.Add(boardCell66, 5, 6);
+            GameBoardPanel.Controls.Add(boardCell67, 6, 6);
+            GameBoardPanel.Controls.Add(boardCell68, 7, 6);
+            GameBoardPanel.Controls.Add(boardCell69, 8, 6);
+            GameBoardPanel.Controls.Add(boardCell70, 9, 6);
+            GameBoardPanel.Controls.Add(boardCell71, 0, 7);
+            GameBoardPanel.Controls.Add(boardCell72, 1, 7);
+            GameBoardPanel.Controls.Add(boardCell73, 2, 7);
+            GameBoardPanel.Controls.Add(boardCell74, 3, 7);
+            GameBoardPanel.Controls.Add(boardCell75, 4, 7);
+            GameBoardPanel.Controls.Add(boardCell76, 5, 7);
+            GameBoardPanel.Controls.Add(boardCell77, 6, 7);
+            GameBoardPanel.Controls.Add(boardCell78, 7, 7);
+            GameBoardPanel.Controls.Add(boardCell79, 8, 7);
+            GameBoardPanel.Controls.Add(boardCell80, 9, 7);
+            GameBoardPanel.Controls.Add(boardCell81, 0, 8);
+            GameBoardPanel.Controls.Add(boardCell82, 1, 8);
+            GameBoardPanel.Controls.Add(boardCell83, 2, 8);
+            GameBoardPanel.Controls.Add(boardCell84, 3, 8);
+            GameBoardPanel.Controls.Add(boardCell85, 4, 8);
+            GameBoardPanel.Controls.Add(boardCell86, 5, 8);
+            GameBoardPanel.Controls.Add(boardCell87, 6, 8);
+            GameBoardPanel.Controls.Add(boardCell88, 7, 8);
+            GameBoardPanel.Controls.Add(boardCell89, 8, 8);
+            GameBoardPanel.Controls.Add(boardCell90, 9, 8);
+            GameBoardPanel.Controls.Add(boardCell91, 0, 9);
+            GameBoardPanel.Controls.Add(boardCell92, 1, 9);
+            GameBoardPanel.Controls.Add(boardCell93, 2, 9);
+            GameBoardPanel.Controls.Add(boardCell94, 3, 9);
+            GameBoardPanel.Controls.Add(boardCell95, 4, 9);
+            GameBoardPanel.Controls.Add(boardCell96, 5, 9);
+            GameBoardPanel.Controls.Add(boardCell97, 6, 9);
+            GameBoardPanel.Controls.Add(boardCell98, 7, 9);
+            GameBoardPanel.Controls.Add(boardCell99, 8, 9);
+            GameBoardPanel.Controls.Add(boardCell100, 9, 9);
+            GameBoardPanel.Location = new Point(57, 30);
+            GameBoardPanel.Name = "GameBoardPanel";
+            GameBoardPanel.RowCount = 10;
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            GameBoardPanel.Size = new Size(500, 500);
+            GameBoardPanel.TabIndex = 0;
             // 
             // boardCell1
             // 
             boardCell1.Dock = DockStyle.Fill;
+            boardCell1.Enabled = false;
             boardCell1.Location = new Point(3, 3);
             boardCell1.Name = "boardCell1";
             boardCell1.Size = new Size(44, 44);
@@ -553,6 +555,7 @@
             // boardCell2
             // 
             boardCell2.Dock = DockStyle.Fill;
+            boardCell2.Enabled = false;
             boardCell2.Location = new Point(53, 3);
             boardCell2.Name = "boardCell2";
             boardCell2.Size = new Size(44, 44);
@@ -562,6 +565,7 @@
             // boardCell3
             // 
             boardCell3.Dock = DockStyle.Fill;
+            boardCell3.Enabled = false;
             boardCell3.Location = new Point(103, 3);
             boardCell3.Name = "boardCell3";
             boardCell3.Size = new Size(44, 44);
@@ -571,6 +575,7 @@
             // boardCell4
             // 
             boardCell4.Dock = DockStyle.Fill;
+            boardCell4.Enabled = false;
             boardCell4.Location = new Point(153, 3);
             boardCell4.Name = "boardCell4";
             boardCell4.Size = new Size(44, 44);
@@ -580,6 +585,7 @@
             // boardCell5
             // 
             boardCell5.Dock = DockStyle.Fill;
+            boardCell5.Enabled = false;
             boardCell5.Location = new Point(203, 3);
             boardCell5.Name = "boardCell5";
             boardCell5.Size = new Size(44, 44);
@@ -589,6 +595,7 @@
             // boardCell6
             // 
             boardCell6.Dock = DockStyle.Fill;
+            boardCell6.Enabled = false;
             boardCell6.Location = new Point(253, 3);
             boardCell6.Name = "boardCell6";
             boardCell6.Size = new Size(44, 44);
@@ -598,6 +605,7 @@
             // boardCell7
             // 
             boardCell7.Dock = DockStyle.Fill;
+            boardCell7.Enabled = false;
             boardCell7.Location = new Point(303, 3);
             boardCell7.Name = "boardCell7";
             boardCell7.Size = new Size(44, 44);
@@ -607,6 +615,7 @@
             // boardCell8
             // 
             boardCell8.Dock = DockStyle.Fill;
+            boardCell8.Enabled = false;
             boardCell8.Location = new Point(353, 3);
             boardCell8.Name = "boardCell8";
             boardCell8.Size = new Size(44, 44);
@@ -616,6 +625,7 @@
             // boardCell9
             // 
             boardCell9.Dock = DockStyle.Fill;
+            boardCell9.Enabled = false;
             boardCell9.Location = new Point(403, 3);
             boardCell9.Name = "boardCell9";
             boardCell9.Size = new Size(44, 44);
@@ -625,6 +635,7 @@
             // boardCell10
             // 
             boardCell10.Dock = DockStyle.Fill;
+            boardCell10.Enabled = false;
             boardCell10.Location = new Point(453, 3);
             boardCell10.Name = "boardCell10";
             boardCell10.Size = new Size(44, 44);
@@ -634,6 +645,7 @@
             // boardCell11
             // 
             boardCell11.Dock = DockStyle.Fill;
+            boardCell11.Enabled = false;
             boardCell11.Location = new Point(3, 53);
             boardCell11.Name = "boardCell11";
             boardCell11.Size = new Size(44, 44);
@@ -643,6 +655,7 @@
             // boardCell12
             // 
             boardCell12.Dock = DockStyle.Fill;
+            boardCell12.Enabled = false;
             boardCell12.Location = new Point(53, 53);
             boardCell12.Name = "boardCell12";
             boardCell12.Size = new Size(44, 44);
@@ -652,6 +665,7 @@
             // boardCell13
             // 
             boardCell13.Dock = DockStyle.Fill;
+            boardCell13.Enabled = false;
             boardCell13.Location = new Point(103, 53);
             boardCell13.Name = "boardCell13";
             boardCell13.Size = new Size(44, 44);
@@ -661,6 +675,7 @@
             // boardCell14
             // 
             boardCell14.Dock = DockStyle.Fill;
+            boardCell14.Enabled = false;
             boardCell14.Location = new Point(153, 53);
             boardCell14.Name = "boardCell14";
             boardCell14.Size = new Size(44, 44);
@@ -670,6 +685,7 @@
             // boardCell15
             // 
             boardCell15.Dock = DockStyle.Fill;
+            boardCell15.Enabled = false;
             boardCell15.Location = new Point(203, 53);
             boardCell15.Name = "boardCell15";
             boardCell15.Size = new Size(44, 44);
@@ -679,6 +695,7 @@
             // boardCell16
             // 
             boardCell16.Dock = DockStyle.Fill;
+            boardCell16.Enabled = false;
             boardCell16.Location = new Point(253, 53);
             boardCell16.Name = "boardCell16";
             boardCell16.Size = new Size(44, 44);
@@ -688,6 +705,7 @@
             // boardCell17
             // 
             boardCell17.Dock = DockStyle.Fill;
+            boardCell17.Enabled = false;
             boardCell17.Location = new Point(303, 53);
             boardCell17.Name = "boardCell17";
             boardCell17.Size = new Size(44, 44);
@@ -697,6 +715,7 @@
             // boardCell18
             // 
             boardCell18.Dock = DockStyle.Fill;
+            boardCell18.Enabled = false;
             boardCell18.Location = new Point(353, 53);
             boardCell18.Name = "boardCell18";
             boardCell18.Size = new Size(44, 44);
@@ -706,6 +725,7 @@
             // boardCell19
             // 
             boardCell19.Dock = DockStyle.Fill;
+            boardCell19.Enabled = false;
             boardCell19.Location = new Point(403, 53);
             boardCell19.Name = "boardCell19";
             boardCell19.Size = new Size(44, 44);
@@ -715,6 +735,7 @@
             // boardCell20
             // 
             boardCell20.Dock = DockStyle.Fill;
+            boardCell20.Enabled = false;
             boardCell20.Location = new Point(453, 53);
             boardCell20.Name = "boardCell20";
             boardCell20.Size = new Size(44, 44);
@@ -724,6 +745,7 @@
             // boardCell21
             // 
             boardCell21.Dock = DockStyle.Fill;
+            boardCell21.Enabled = false;
             boardCell21.Location = new Point(3, 103);
             boardCell21.Name = "boardCell21";
             boardCell21.Size = new Size(44, 44);
@@ -733,6 +755,7 @@
             // boardCell22
             // 
             boardCell22.Dock = DockStyle.Fill;
+            boardCell22.Enabled = false;
             boardCell22.Location = new Point(53, 103);
             boardCell22.Name = "boardCell22";
             boardCell22.Size = new Size(44, 44);
@@ -742,6 +765,7 @@
             // boardCell23
             // 
             boardCell23.Dock = DockStyle.Fill;
+            boardCell23.Enabled = false;
             boardCell23.Location = new Point(103, 103);
             boardCell23.Name = "boardCell23";
             boardCell23.Size = new Size(44, 44);
@@ -751,6 +775,7 @@
             // boardCell24
             // 
             boardCell24.Dock = DockStyle.Fill;
+            boardCell24.Enabled = false;
             boardCell24.Location = new Point(153, 103);
             boardCell24.Name = "boardCell24";
             boardCell24.Size = new Size(44, 44);
@@ -760,6 +785,7 @@
             // boardCell25
             // 
             boardCell25.Dock = DockStyle.Fill;
+            boardCell25.Enabled = false;
             boardCell25.Location = new Point(203, 103);
             boardCell25.Name = "boardCell25";
             boardCell25.Size = new Size(44, 44);
@@ -769,6 +795,7 @@
             // boardCell26
             // 
             boardCell26.Dock = DockStyle.Fill;
+            boardCell26.Enabled = false;
             boardCell26.Location = new Point(253, 103);
             boardCell26.Name = "boardCell26";
             boardCell26.Size = new Size(44, 44);
@@ -778,6 +805,7 @@
             // boardCell27
             // 
             boardCell27.Dock = DockStyle.Fill;
+            boardCell27.Enabled = false;
             boardCell27.Location = new Point(303, 103);
             boardCell27.Name = "boardCell27";
             boardCell27.Size = new Size(44, 44);
@@ -787,6 +815,7 @@
             // boardCell28
             // 
             boardCell28.Dock = DockStyle.Fill;
+            boardCell28.Enabled = false;
             boardCell28.Location = new Point(353, 103);
             boardCell28.Name = "boardCell28";
             boardCell28.Size = new Size(44, 44);
@@ -796,6 +825,7 @@
             // boardCell29
             // 
             boardCell29.Dock = DockStyle.Fill;
+            boardCell29.Enabled = false;
             boardCell29.Location = new Point(403, 103);
             boardCell29.Name = "boardCell29";
             boardCell29.Size = new Size(44, 44);
@@ -805,6 +835,7 @@
             // boardCell30
             // 
             boardCell30.Dock = DockStyle.Fill;
+            boardCell30.Enabled = false;
             boardCell30.Location = new Point(453, 103);
             boardCell30.Name = "boardCell30";
             boardCell30.Size = new Size(44, 44);
@@ -814,6 +845,7 @@
             // boardCell31
             // 
             boardCell31.Dock = DockStyle.Fill;
+            boardCell31.Enabled = false;
             boardCell31.Location = new Point(3, 153);
             boardCell31.Name = "boardCell31";
             boardCell31.Size = new Size(44, 44);
@@ -823,6 +855,7 @@
             // boardCell32
             // 
             boardCell32.Dock = DockStyle.Fill;
+            boardCell32.Enabled = false;
             boardCell32.Location = new Point(53, 153);
             boardCell32.Name = "boardCell32";
             boardCell32.Size = new Size(44, 44);
@@ -832,6 +865,7 @@
             // boardCell33
             // 
             boardCell33.Dock = DockStyle.Fill;
+            boardCell33.Enabled = false;
             boardCell33.Location = new Point(103, 153);
             boardCell33.Name = "boardCell33";
             boardCell33.Size = new Size(44, 44);
@@ -841,6 +875,7 @@
             // boardCell34
             // 
             boardCell34.Dock = DockStyle.Fill;
+            boardCell34.Enabled = false;
             boardCell34.Location = new Point(153, 153);
             boardCell34.Name = "boardCell34";
             boardCell34.Size = new Size(44, 44);
@@ -850,6 +885,7 @@
             // boardCell35
             // 
             boardCell35.Dock = DockStyle.Fill;
+            boardCell35.Enabled = false;
             boardCell35.Location = new Point(203, 153);
             boardCell35.Name = "boardCell35";
             boardCell35.Size = new Size(44, 44);
@@ -859,6 +895,7 @@
             // boardCell36
             // 
             boardCell36.Dock = DockStyle.Fill;
+            boardCell36.Enabled = false;
             boardCell36.Location = new Point(253, 153);
             boardCell36.Name = "boardCell36";
             boardCell36.Size = new Size(44, 44);
@@ -868,6 +905,7 @@
             // boardCell37
             // 
             boardCell37.Dock = DockStyle.Fill;
+            boardCell37.Enabled = false;
             boardCell37.Location = new Point(303, 153);
             boardCell37.Name = "boardCell37";
             boardCell37.Size = new Size(44, 44);
@@ -877,6 +915,7 @@
             // boardCell38
             // 
             boardCell38.Dock = DockStyle.Fill;
+            boardCell38.Enabled = false;
             boardCell38.Location = new Point(353, 153);
             boardCell38.Name = "boardCell38";
             boardCell38.Size = new Size(44, 44);
@@ -886,6 +925,7 @@
             // boardCell39
             // 
             boardCell39.Dock = DockStyle.Fill;
+            boardCell39.Enabled = false;
             boardCell39.Location = new Point(403, 153);
             boardCell39.Name = "boardCell39";
             boardCell39.Size = new Size(44, 44);
@@ -895,6 +935,7 @@
             // boardCell40
             // 
             boardCell40.Dock = DockStyle.Fill;
+            boardCell40.Enabled = false;
             boardCell40.Location = new Point(453, 153);
             boardCell40.Name = "boardCell40";
             boardCell40.Size = new Size(44, 44);
@@ -904,6 +945,7 @@
             // boardCell41
             // 
             boardCell41.Dock = DockStyle.Fill;
+            boardCell41.Enabled = false;
             boardCell41.Location = new Point(3, 203);
             boardCell41.Name = "boardCell41";
             boardCell41.Size = new Size(44, 44);
@@ -913,6 +955,7 @@
             // boardCell42
             // 
             boardCell42.Dock = DockStyle.Fill;
+            boardCell42.Enabled = false;
             boardCell42.Location = new Point(53, 203);
             boardCell42.Name = "boardCell42";
             boardCell42.Size = new Size(44, 44);
@@ -922,6 +965,7 @@
             // boardCell43
             // 
             boardCell43.Dock = DockStyle.Fill;
+            boardCell43.Enabled = false;
             boardCell43.Location = new Point(103, 203);
             boardCell43.Name = "boardCell43";
             boardCell43.Size = new Size(44, 44);
@@ -931,6 +975,7 @@
             // boardCell44
             // 
             boardCell44.Dock = DockStyle.Fill;
+            boardCell44.Enabled = false;
             boardCell44.Location = new Point(153, 203);
             boardCell44.Name = "boardCell44";
             boardCell44.Size = new Size(44, 44);
@@ -940,6 +985,7 @@
             // boardCell45
             // 
             boardCell45.Dock = DockStyle.Fill;
+            boardCell45.Enabled = false;
             boardCell45.Location = new Point(203, 203);
             boardCell45.Name = "boardCell45";
             boardCell45.Size = new Size(44, 44);
@@ -949,6 +995,7 @@
             // boardCell46
             // 
             boardCell46.Dock = DockStyle.Fill;
+            boardCell46.Enabled = false;
             boardCell46.Location = new Point(253, 203);
             boardCell46.Name = "boardCell46";
             boardCell46.Size = new Size(44, 44);
@@ -958,6 +1005,7 @@
             // boardCell47
             // 
             boardCell47.Dock = DockStyle.Fill;
+            boardCell47.Enabled = false;
             boardCell47.Location = new Point(303, 203);
             boardCell47.Name = "boardCell47";
             boardCell47.Size = new Size(44, 44);
@@ -967,6 +1015,7 @@
             // boardCell48
             // 
             boardCell48.Dock = DockStyle.Fill;
+            boardCell48.Enabled = false;
             boardCell48.Location = new Point(353, 203);
             boardCell48.Name = "boardCell48";
             boardCell48.Size = new Size(44, 44);
@@ -976,6 +1025,7 @@
             // boardCell49
             // 
             boardCell49.Dock = DockStyle.Fill;
+            boardCell49.Enabled = false;
             boardCell49.Location = new Point(403, 203);
             boardCell49.Name = "boardCell49";
             boardCell49.Size = new Size(44, 44);
@@ -985,6 +1035,7 @@
             // boardCell50
             // 
             boardCell50.Dock = DockStyle.Fill;
+            boardCell50.Enabled = false;
             boardCell50.Location = new Point(453, 203);
             boardCell50.Name = "boardCell50";
             boardCell50.Size = new Size(44, 44);
@@ -994,6 +1045,7 @@
             // boardCell51
             // 
             boardCell51.Dock = DockStyle.Fill;
+            boardCell51.Enabled = false;
             boardCell51.Location = new Point(3, 253);
             boardCell51.Name = "boardCell51";
             boardCell51.Size = new Size(44, 44);
@@ -1003,6 +1055,7 @@
             // boardCell52
             // 
             boardCell52.Dock = DockStyle.Fill;
+            boardCell52.Enabled = false;
             boardCell52.Location = new Point(53, 253);
             boardCell52.Name = "boardCell52";
             boardCell52.Size = new Size(44, 44);
@@ -1012,6 +1065,7 @@
             // boardCell53
             // 
             boardCell53.Dock = DockStyle.Fill;
+            boardCell53.Enabled = false;
             boardCell53.Location = new Point(103, 253);
             boardCell53.Name = "boardCell53";
             boardCell53.Size = new Size(44, 44);
@@ -1021,6 +1075,7 @@
             // boardCell54
             // 
             boardCell54.Dock = DockStyle.Fill;
+            boardCell54.Enabled = false;
             boardCell54.Location = new Point(153, 253);
             boardCell54.Name = "boardCell54";
             boardCell54.Size = new Size(44, 44);
@@ -1030,6 +1085,7 @@
             // boardCell55
             // 
             boardCell55.Dock = DockStyle.Fill;
+            boardCell55.Enabled = false;
             boardCell55.Location = new Point(203, 253);
             boardCell55.Name = "boardCell55";
             boardCell55.Size = new Size(44, 44);
@@ -1039,6 +1095,7 @@
             // boardCell56
             // 
             boardCell56.Dock = DockStyle.Fill;
+            boardCell56.Enabled = false;
             boardCell56.Location = new Point(253, 253);
             boardCell56.Name = "boardCell56";
             boardCell56.Size = new Size(44, 44);
@@ -1048,6 +1105,7 @@
             // boardCell57
             // 
             boardCell57.Dock = DockStyle.Fill;
+            boardCell57.Enabled = false;
             boardCell57.Location = new Point(303, 253);
             boardCell57.Name = "boardCell57";
             boardCell57.Size = new Size(44, 44);
@@ -1057,6 +1115,7 @@
             // boardCell58
             // 
             boardCell58.Dock = DockStyle.Fill;
+            boardCell58.Enabled = false;
             boardCell58.Location = new Point(353, 253);
             boardCell58.Name = "boardCell58";
             boardCell58.Size = new Size(44, 44);
@@ -1066,6 +1125,7 @@
             // boardCell59
             // 
             boardCell59.Dock = DockStyle.Fill;
+            boardCell59.Enabled = false;
             boardCell59.Location = new Point(403, 253);
             boardCell59.Name = "boardCell59";
             boardCell59.Size = new Size(44, 44);
@@ -1075,6 +1135,7 @@
             // boardCell60
             // 
             boardCell60.Dock = DockStyle.Fill;
+            boardCell60.Enabled = false;
             boardCell60.Location = new Point(453, 253);
             boardCell60.Name = "boardCell60";
             boardCell60.Size = new Size(44, 44);
@@ -1084,6 +1145,7 @@
             // boardCell61
             // 
             boardCell61.Dock = DockStyle.Fill;
+            boardCell61.Enabled = false;
             boardCell61.Location = new Point(3, 303);
             boardCell61.Name = "boardCell61";
             boardCell61.Size = new Size(44, 44);
@@ -1093,6 +1155,7 @@
             // boardCell62
             // 
             boardCell62.Dock = DockStyle.Fill;
+            boardCell62.Enabled = false;
             boardCell62.Location = new Point(53, 303);
             boardCell62.Name = "boardCell62";
             boardCell62.Size = new Size(44, 44);
@@ -1102,6 +1165,7 @@
             // boardCell63
             // 
             boardCell63.Dock = DockStyle.Fill;
+            boardCell63.Enabled = false;
             boardCell63.Location = new Point(103, 303);
             boardCell63.Name = "boardCell63";
             boardCell63.Size = new Size(44, 44);
@@ -1111,6 +1175,7 @@
             // boardCell64
             // 
             boardCell64.Dock = DockStyle.Fill;
+            boardCell64.Enabled = false;
             boardCell64.Location = new Point(153, 303);
             boardCell64.Name = "boardCell64";
             boardCell64.Size = new Size(44, 44);
@@ -1120,6 +1185,7 @@
             // boardCell65
             // 
             boardCell65.Dock = DockStyle.Fill;
+            boardCell65.Enabled = false;
             boardCell65.Location = new Point(203, 303);
             boardCell65.Name = "boardCell65";
             boardCell65.Size = new Size(44, 44);
@@ -1129,6 +1195,7 @@
             // boardCell66
             // 
             boardCell66.Dock = DockStyle.Fill;
+            boardCell66.Enabled = false;
             boardCell66.Location = new Point(253, 303);
             boardCell66.Name = "boardCell66";
             boardCell66.Size = new Size(44, 44);
@@ -1138,6 +1205,7 @@
             // boardCell67
             // 
             boardCell67.Dock = DockStyle.Fill;
+            boardCell67.Enabled = false;
             boardCell67.Location = new Point(303, 303);
             boardCell67.Name = "boardCell67";
             boardCell67.Size = new Size(44, 44);
@@ -1147,6 +1215,7 @@
             // boardCell68
             // 
             boardCell68.Dock = DockStyle.Fill;
+            boardCell68.Enabled = false;
             boardCell68.Location = new Point(353, 303);
             boardCell68.Name = "boardCell68";
             boardCell68.Size = new Size(44, 44);
@@ -1156,6 +1225,7 @@
             // boardCell69
             // 
             boardCell69.Dock = DockStyle.Fill;
+            boardCell69.Enabled = false;
             boardCell69.Location = new Point(403, 303);
             boardCell69.Name = "boardCell69";
             boardCell69.Size = new Size(44, 44);
@@ -1165,6 +1235,7 @@
             // boardCell70
             // 
             boardCell70.Dock = DockStyle.Fill;
+            boardCell70.Enabled = false;
             boardCell70.Location = new Point(453, 303);
             boardCell70.Name = "boardCell70";
             boardCell70.Size = new Size(44, 44);
@@ -1174,6 +1245,7 @@
             // boardCell71
             // 
             boardCell71.Dock = DockStyle.Fill;
+            boardCell71.Enabled = false;
             boardCell71.Location = new Point(3, 353);
             boardCell71.Name = "boardCell71";
             boardCell71.Size = new Size(44, 44);
@@ -1183,6 +1255,7 @@
             // boardCell72
             // 
             boardCell72.Dock = DockStyle.Fill;
+            boardCell72.Enabled = false;
             boardCell72.Location = new Point(53, 353);
             boardCell72.Name = "boardCell72";
             boardCell72.Size = new Size(44, 44);
@@ -1192,6 +1265,7 @@
             // boardCell73
             // 
             boardCell73.Dock = DockStyle.Fill;
+            boardCell73.Enabled = false;
             boardCell73.Location = new Point(103, 353);
             boardCell73.Name = "boardCell73";
             boardCell73.Size = new Size(44, 44);
@@ -1201,6 +1275,7 @@
             // boardCell74
             // 
             boardCell74.Dock = DockStyle.Fill;
+            boardCell74.Enabled = false;
             boardCell74.Location = new Point(153, 353);
             boardCell74.Name = "boardCell74";
             boardCell74.Size = new Size(44, 44);
@@ -1210,6 +1285,7 @@
             // boardCell75
             // 
             boardCell75.Dock = DockStyle.Fill;
+            boardCell75.Enabled = false;
             boardCell75.Location = new Point(203, 353);
             boardCell75.Name = "boardCell75";
             boardCell75.Size = new Size(44, 44);
@@ -1219,6 +1295,7 @@
             // boardCell76
             // 
             boardCell76.Dock = DockStyle.Fill;
+            boardCell76.Enabled = false;
             boardCell76.Location = new Point(253, 353);
             boardCell76.Name = "boardCell76";
             boardCell76.Size = new Size(44, 44);
@@ -1228,6 +1305,7 @@
             // boardCell77
             // 
             boardCell77.Dock = DockStyle.Fill;
+            boardCell77.Enabled = false;
             boardCell77.Location = new Point(303, 353);
             boardCell77.Name = "boardCell77";
             boardCell77.Size = new Size(44, 44);
@@ -1237,6 +1315,7 @@
             // boardCell78
             // 
             boardCell78.Dock = DockStyle.Fill;
+            boardCell78.Enabled = false;
             boardCell78.Location = new Point(353, 353);
             boardCell78.Name = "boardCell78";
             boardCell78.Size = new Size(44, 44);
@@ -1246,6 +1325,7 @@
             // boardCell79
             // 
             boardCell79.Dock = DockStyle.Fill;
+            boardCell79.Enabled = false;
             boardCell79.Location = new Point(403, 353);
             boardCell79.Name = "boardCell79";
             boardCell79.Size = new Size(44, 44);
@@ -1255,6 +1335,7 @@
             // boardCell80
             // 
             boardCell80.Dock = DockStyle.Fill;
+            boardCell80.Enabled = false;
             boardCell80.Location = new Point(453, 353);
             boardCell80.Name = "boardCell80";
             boardCell80.Size = new Size(44, 44);
@@ -1264,6 +1345,7 @@
             // boardCell81
             // 
             boardCell81.Dock = DockStyle.Fill;
+            boardCell81.Enabled = false;
             boardCell81.Location = new Point(3, 403);
             boardCell81.Name = "boardCell81";
             boardCell81.Size = new Size(44, 44);
@@ -1273,6 +1355,7 @@
             // boardCell82
             // 
             boardCell82.Dock = DockStyle.Fill;
+            boardCell82.Enabled = false;
             boardCell82.Location = new Point(53, 403);
             boardCell82.Name = "boardCell82";
             boardCell82.Size = new Size(44, 44);
@@ -1282,6 +1365,7 @@
             // boardCell83
             // 
             boardCell83.Dock = DockStyle.Fill;
+            boardCell83.Enabled = false;
             boardCell83.Location = new Point(103, 403);
             boardCell83.Name = "boardCell83";
             boardCell83.Size = new Size(44, 44);
@@ -1291,6 +1375,7 @@
             // boardCell84
             // 
             boardCell84.Dock = DockStyle.Fill;
+            boardCell84.Enabled = false;
             boardCell84.Location = new Point(153, 403);
             boardCell84.Name = "boardCell84";
             boardCell84.Size = new Size(44, 44);
@@ -1300,6 +1385,7 @@
             // boardCell85
             // 
             boardCell85.Dock = DockStyle.Fill;
+            boardCell85.Enabled = false;
             boardCell85.Location = new Point(203, 403);
             boardCell85.Name = "boardCell85";
             boardCell85.Size = new Size(44, 44);
@@ -1309,6 +1395,7 @@
             // boardCell86
             // 
             boardCell86.Dock = DockStyle.Fill;
+            boardCell86.Enabled = false;
             boardCell86.Location = new Point(253, 403);
             boardCell86.Name = "boardCell86";
             boardCell86.Size = new Size(44, 44);
@@ -1318,6 +1405,7 @@
             // boardCell87
             // 
             boardCell87.Dock = DockStyle.Fill;
+            boardCell87.Enabled = false;
             boardCell87.Location = new Point(303, 403);
             boardCell87.Name = "boardCell87";
             boardCell87.Size = new Size(44, 44);
@@ -1327,6 +1415,7 @@
             // boardCell88
             // 
             boardCell88.Dock = DockStyle.Fill;
+            boardCell88.Enabled = false;
             boardCell88.Location = new Point(353, 403);
             boardCell88.Name = "boardCell88";
             boardCell88.Size = new Size(44, 44);
@@ -1336,6 +1425,7 @@
             // boardCell89
             // 
             boardCell89.Dock = DockStyle.Fill;
+            boardCell89.Enabled = false;
             boardCell89.Location = new Point(403, 403);
             boardCell89.Name = "boardCell89";
             boardCell89.Size = new Size(44, 44);
@@ -1345,6 +1435,7 @@
             // boardCell90
             // 
             boardCell90.Dock = DockStyle.Fill;
+            boardCell90.Enabled = false;
             boardCell90.Location = new Point(453, 403);
             boardCell90.Name = "boardCell90";
             boardCell90.Size = new Size(44, 44);
@@ -1354,6 +1445,7 @@
             // boardCell91
             // 
             boardCell91.Dock = DockStyle.Fill;
+            boardCell91.Enabled = false;
             boardCell91.Location = new Point(3, 453);
             boardCell91.Name = "boardCell91";
             boardCell91.Size = new Size(44, 44);
@@ -1363,6 +1455,7 @@
             // boardCell92
             // 
             boardCell92.Dock = DockStyle.Fill;
+            boardCell92.Enabled = false;
             boardCell92.Location = new Point(53, 453);
             boardCell92.Name = "boardCell92";
             boardCell92.Size = new Size(44, 44);
@@ -1372,6 +1465,7 @@
             // boardCell93
             // 
             boardCell93.Dock = DockStyle.Fill;
+            boardCell93.Enabled = false;
             boardCell93.Location = new Point(103, 453);
             boardCell93.Name = "boardCell93";
             boardCell93.Size = new Size(44, 44);
@@ -1381,6 +1475,7 @@
             // boardCell94
             // 
             boardCell94.Dock = DockStyle.Fill;
+            boardCell94.Enabled = false;
             boardCell94.Location = new Point(153, 453);
             boardCell94.Name = "boardCell94";
             boardCell94.Size = new Size(44, 44);
@@ -1390,6 +1485,7 @@
             // boardCell95
             // 
             boardCell95.Dock = DockStyle.Fill;
+            boardCell95.Enabled = false;
             boardCell95.Location = new Point(203, 453);
             boardCell95.Name = "boardCell95";
             boardCell95.Size = new Size(44, 44);
@@ -1399,6 +1495,7 @@
             // boardCell96
             // 
             boardCell96.Dock = DockStyle.Fill;
+            boardCell96.Enabled = false;
             boardCell96.Location = new Point(253, 453);
             boardCell96.Name = "boardCell96";
             boardCell96.Size = new Size(44, 44);
@@ -1408,6 +1505,7 @@
             // boardCell97
             // 
             boardCell97.Dock = DockStyle.Fill;
+            boardCell97.Enabled = false;
             boardCell97.Location = new Point(303, 453);
             boardCell97.Name = "boardCell97";
             boardCell97.Size = new Size(44, 44);
@@ -1417,6 +1515,7 @@
             // boardCell98
             // 
             boardCell98.Dock = DockStyle.Fill;
+            boardCell98.Enabled = false;
             boardCell98.Location = new Point(353, 453);
             boardCell98.Name = "boardCell98";
             boardCell98.Size = new Size(44, 44);
@@ -1426,6 +1525,7 @@
             // boardCell99
             // 
             boardCell99.Dock = DockStyle.Fill;
+            boardCell99.Enabled = false;
             boardCell99.Location = new Point(403, 453);
             boardCell99.Name = "boardCell99";
             boardCell99.Size = new Size(44, 44);
@@ -1435,6 +1535,7 @@
             // boardCell100
             // 
             boardCell100.Dock = DockStyle.Fill;
+            boardCell100.Enabled = false;
             boardCell100.Location = new Point(453, 453);
             boardCell100.Name = "boardCell100";
             boardCell100.Size = new Size(44, 44);
@@ -1445,43 +1546,33 @@
             // 
             panel2.AutoSize = true;
             panel2.BackColor = SystemColors.AppWorkspace;
-            panel2.Controls.Add(label22);
-            panel2.Controls.Add(label21);
-            panel2.Controls.Add(button1);
+            panel2.Controls.Add(GameStatusLabel);
+            panel2.Controls.Add(NewGameButton);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 553);
             panel2.Name = "panel2";
             panel2.Size = new Size(614, 58);
             panel2.TabIndex = 1;
             // 
-            // label21
+            // GameStatusLabel
             // 
-            label21.AutoSize = true;
-            label21.Location = new Point(26, 19);
-            label21.Name = "label21";
-            label21.Size = new Size(98, 15);
-            label21.TabIndex = 1;
-            label21.Text = "Number of ships:";
+            GameStatusLabel.AutoSize = true;
+            GameStatusLabel.Location = new Point(19, 18);
+            GameStatusLabel.Name = "GameStatusLabel";
+            GameStatusLabel.Size = new Size(0, 15);
+            GameStatusLabel.TabIndex = 1;
             // 
-            // button1
+            // NewGameButton
             // 
-            button1.BackColor = SystemColors.HotTrack;
-            button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(249, 6);
-            button1.Name = "button1";
-            button1.Size = new Size(116, 40);
-            button1.TabIndex = 0;
-            button1.Text = "New Game";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Location = new Point(124, 19);
-            label22.Name = "label22";
-            label22.Size = new Size(13, 15);
-            label22.TabIndex = 2;
-            label22.Text = "2";
+            NewGameButton.BackColor = SystemColors.HotTrack;
+            NewGameButton.ForeColor = SystemColors.ButtonFace;
+            NewGameButton.Location = new Point(249, 6);
+            NewGameButton.Name = "NewGameButton";
+            NewGameButton.Size = new Size(116, 40);
+            NewGameButton.TabIndex = 0;
+            NewGameButton.Text = "New Game";
+            NewGameButton.UseVisualStyleBackColor = false;
+            NewGameButton.Click += NewGameButton_Click_1;
             // 
             // MainForm
             // 
@@ -1498,7 +1589,7 @@
             panel1.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.ResumeLayout(false);
+            GameBoardPanel.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -1509,8 +1600,8 @@
 
         private Panel panel1;
         private Panel panel2;
-        private Button button1;
-        private TableLayoutPanel tableLayoutPanel1;
+        private Button NewGameButton;
+        private TableLayoutPanel GameBoardPanel;
         private BoardCell boardCell1;
         private BoardCell boardCell2;
         private BoardCell boardCell3;
@@ -1633,7 +1724,6 @@
         private Label label18;
         private Label label19;
         private Label label20;
-        private Label label21;
-        private Label label22;
+        private Label GameStatusLabel;
     }
 }
