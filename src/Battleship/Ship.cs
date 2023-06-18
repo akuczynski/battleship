@@ -19,6 +19,7 @@ namespace Battleship
         public int EndPosX { get; }
         public int EndPosY { get; }
         public int Size { get; }
+        public bool IsSink { get; private set; }
 
         public Ship(int startPosX, int startPosY, int size, ShipLayout layout)
         {
@@ -36,6 +37,13 @@ namespace Battleship
                 EndPosX = StartPosX;
                 EndPosY = StartPosY + size;
             }
-        } 
+
+            IsSink = false;
+        }
+
+        public void Sink()
+        {
+            IsSink = true;
+        }
     }
 }

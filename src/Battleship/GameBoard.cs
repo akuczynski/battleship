@@ -14,26 +14,39 @@ namespace Battleship
 
     internal class GameBoard
     {
-        public IReadOnlyList<Ship> Ships => _ships; 
-
         private bool[,] _gameMatrix;
 
-        private List<Ship> _ships = new List<Ship>();
+        private List<Ship> _ships;
 
-        public void StartNewGame(IEnumerator cells)
+        private Label _gameStatus;
+
+        public GameBoard(Label gameStatus)
         {
-            GenerateNewBoard();
-
-            InitializeBoardCells(cells); 
+            _gameMatrix = new bool[10, 10];
+            _ships = new List<Ship>();
+            _gameStatus = gameStatus;
         }
 
-        private void InitializeBoardCells(IEnumerator cells)
+        public void StartNewGame(TableLayoutPanel gamePanel)
         {
+            GenerateNewBoard();
+            InitializeBoardCells(gamePanel);
+
+            _gameStatus.Text = "Number of uncovered ships: 3"; 
+        }
+
+        private void InitializeBoardCells(TableLayoutPanel gamePanel)
+        {
+            var cells = gamePanel.Controls.GetEnumerator();
+
             while (cells.MoveNext())
             {
                 var boardCell = (BoardCell)cells.Current;
+                var row = gamePanel.GetRow(boardCell);
+                var column = gamePanel.GetColumn(boardCell);
 
-                boardCell.Init(BoardCellType.ShipCell);
+                var hasShip = _gameMatrix[column, row];
+                boardCell.Init(hasShip ? BoardCellType.ShipCell: BoardCellType.Empty);
             }
 
             cells.Reset();
@@ -55,11 +68,11 @@ namespace Battleship
         private void AddShipToTheBoard(Ship ship)
         {
             // for horizontal ship layout 
-            for(int i = ship.StartPosX; i <= ship.EndPosX; i++)
+            for(int i = ship.StartPosX; i < ship.EndPosX; i++)
                 _gameMatrix[i, ship.StartPosY] = true;
 
             // for vertical ship layout
-            for (int j = ship.StartPosY; j <= ship.EndPosY; j++)
+            for (int j = ship.StartPosY; j < ship.EndPosY; j++)
                 _gameMatrix[ship.StartPosX, j] = true;
 
         }

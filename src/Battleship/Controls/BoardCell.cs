@@ -20,13 +20,10 @@
 
         public BoardState State { get; private set; }
 
-        public int Row { get; set; }
-
-        public int Column { get; set; }
-
         public BoardCell()
         {
-            this.Click += BoardCell_Click;
+            Enabled = false;
+            Click += BoardCell_Click;
         }
 
         public new void Dispose()
@@ -41,6 +38,7 @@
 
             State = BoardState.Covered;
             BackColor = Button.DefaultBackColor;
+            Enabled = true;
         }
 
         public void Uncover()

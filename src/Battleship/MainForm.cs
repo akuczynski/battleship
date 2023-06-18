@@ -9,14 +9,11 @@ namespace Battleship
             InitializeComponent();
         }
 
-
-
         private void NewGameButton_Click_1(object sender, EventArgs e)
         {
-            var gameBoard = new GameBoard();
-            var cells = GameBoardPanel.Controls.GetEnumerator();
+            var gameBoard = new GameBoard(GameStatusLabel);
 
-            gameBoard.StartNewGame(cells);
+            gameBoard.StartNewGame(GameBoardPanel);
         }
     }
 }
