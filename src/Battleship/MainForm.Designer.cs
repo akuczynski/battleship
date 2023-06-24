@@ -1683,6 +1683,8 @@ namespace Battleship
             Controls.Add(panel2);
             Controls.Add(panel1);
             MaximizeBox = false;
+            MaximumSize = new Size(630, 650);
+            MinimumSize = new Size(630, 650);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ballteship";

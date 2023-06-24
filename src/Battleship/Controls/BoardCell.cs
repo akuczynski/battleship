@@ -14,18 +14,29 @@
         Uncovered
     }
 
-    public class BoardCell : Button
+    public interface IBoardCell
+    {
+       void Init(BoardCellType type);
+
+       event EventHandler Uncovered;
+
+       BoardState State { get; }
+    }
+
+    public class BoardCell : Button, IBoardCell
     {
         public BoardCellType Type { get; private set; }
 
         public BoardState State { get; private set; }
+
+        public event EventHandler? Uncovered;
 
         public BoardCell()
         {
             Enabled = false;
             Click += BoardCell_Click;
         }
-
+      
         public void Init(BoardCellType type)
         {
             Type = type;
@@ -44,21 +55,24 @@
         private void BoardCell_Click(object? sender, EventArgs e)
         {
             var boardCell = sender as BoardCell;
-            boardCell?.Uncover();
+            boardCell?.OnUncover(EventArgs.Empty);
         }
 
-        private void Uncover()
+
+        protected virtual void OnUncover(EventArgs e)
         {
             State = BoardState.Uncovered;
-            
+
             if (Type == BoardCellType.Empty)
             {
                 BackColor = Color.Blue;
             }
             else if (Type == BoardCellType.ShipCell)
             {
-                BackColor = Color.Red; 
+                BackColor = Color.Red;
             }
+
+            Uncovered?.Invoke(this, e);
         }
     }
 }

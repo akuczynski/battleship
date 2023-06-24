@@ -28,60 +28,60 @@ namespace Battleship
         public int Size { get; }
         public bool IsSunk => boardCells.All(x => x.State == BoardState.Uncovered);
 
-        private Action _onShipSunk;
+        public event EventHandler Sunk;
 
-        public IList<BoardCell> boardCells { get; private set; }
+        public IList<IBoardCell> boardCells { get; private set; }
 
-        public Ship(int startPosX, int startPosY, int size, ShipLayout layout)
+        public Ship(int startPosX, int startPosY, ShipType shipType, ShipLayout layout)
         {
             StartPosX = startPosX;
             StartPosY = startPosY;
-            Size = size;
+            Size = (int)shipType;
 
             if (layout == ShipLayout.Horizontal)
             {
-                EndPosX = StartPosX + size;
+                EndPosX = StartPosX + Size;
                 EndPosY = StartPosY;
             }
             if (layout == ShipLayout.Vertical)
             {
                 EndPosX = StartPosX;
-                EndPosY = StartPosY + size;
+                EndPosY = StartPosY + Size;
             }
 
-            boardCells = new List<BoardCell>();
+            boardCells = new List<IBoardCell>();
         }
-        
-        public void SetOnShipSunkAction(Action onShipSunk)
+
+        protected virtual void OnShipSunk(EventArgs e)
         {
-            _onShipSunk = onShipSunk;
-        }
+            Sunk?.Invoke(this, e);
+        }         
 
         public void Dispose()
         {
             foreach (var boardCell in boardCells)
             {
-                boardCell.Click -= OnShipCellClicked;
+                boardCell.Uncovered -= OnBoardCellUncovered;
             }
         }
 
-        public void AddBoardCell(BoardCell boardCell)
+        public void AddBoardCell(IBoardCell boardCell)
         {
             boardCells.Add(boardCell);
-            boardCell.Click += OnShipCellClicked;
+            boardCell.Uncovered += OnBoardCellUncovered;
         }
 
-        private void OnShipCellClicked(object? sender, EventArgs e)
+        private void OnBoardCellUncovered(object? sender, EventArgs e)
         {
-            var boardCell = sender as BoardCell;
+            var boardCell = sender as IBoardCell;
 
             if (IsSunk)
             {
-                _onShipSunk();
+                OnShipSunk(EventArgs.Empty);
             }
 
             // react to click event only once ! 
-            boardCell!.Click -= OnShipCellClicked;
+            boardCell!.Uncovered -= OnBoardCellUncovered;
         }
     }
 }

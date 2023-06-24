@@ -11,20 +11,17 @@ namespace Battleship
     // Game board has only 3 ships: 
     // 1 x Battleship  (5 squares)
     // 2 x Destroyers ( 4 squares) 
-    internal class GameBoard
+    internal class GameBoard : IDisposable 
     {
         private bool[,] _gameMatrix;
 
         private List<Ship> _ships;
         
-        private Label _gameStatus;
+        private IAppGUI _appGUI;
 
-        private TableLayoutPanel _gamePanel;
-
-        public GameBoard(Label gameStatus, TableLayoutPanel gamePanel)
+        public GameBoard(IAppGUI appGUI)
         {
-            _gameStatus = gameStatus;
-            _gamePanel = gamePanel; 
+            _appGUI = appGUI; 
         }
 
         public void StartNewGame()
@@ -32,27 +29,23 @@ namespace Battleship
             InitializeBoardCells();
             GenerateNewBoard();
             UpdateGameStatusLabel();
+        }
 
-           // TestMode(); // this is only for the debugging
+        public void Dispose()
+        {
+            _ships.ForEach(x => UnsubscribeToShipEvents(x));
         }
 
         private void InitializeBoardCells()
         {
-            var cells = _gamePanel.Controls.GetEnumerator();
-
-            while (cells.MoveNext())
-            {
-                var boardCell = (BoardCell)cells.Current;
-                boardCell.Init(BoardCellType.Empty);
-            }
-
-            cells.Reset();
+            _appGUI.CleanBoard();
         }
 
         private void GenerateNewBoard()
         {
             // clean board
             _gameMatrix = new bool[10, 10];
+            _ships?.ForEach( ship => UnsubscribeToShipEvents(ship));
             _ships = new List<Ship>();
 
             // create ships 
@@ -119,8 +112,8 @@ namespace Battleship
 
             } while (isOverlappingPosition);
 
-            var ship = new Ship(startPosX, startPosY, size, layout);
-            ship.SetOnShipSunkAction(() => UpdateGameStatusLabel());
+            var ship = new Ship(startPosX, startPosY, shipType, layout);
+            SubscribeToShipEvents(ship);
 
             AddShipToTheBoard(ship);
         }
@@ -133,7 +126,7 @@ namespace Battleship
             for (int i = ship.StartPosX; i < ship.EndPosX; i++)
             {
                 _gameMatrix[i, ship.StartPosY] = true;
-                var boardCell = (BoardCell)_gamePanel.GetControlFromPosition(i, ship.StartPosY);
+                var boardCell = _appGUI.GetBoardCellFromPosition(i, ship.StartPosY);
                 ship.AddBoardCell(boardCell);
                 boardCell.Init(BoardCellType.ShipCell);
             }
@@ -142,7 +135,7 @@ namespace Battleship
             for (int j = ship.StartPosY; j < ship.EndPosY; j++)
             {
                 _gameMatrix[ship.StartPosX, j] = true;
-                var boardCell = (BoardCell)_gamePanel.GetControlFromPosition(ship.StartPosX, j);
+                var boardCell = _appGUI.GetBoardCellFromPosition(ship.StartPosX, j);
                 ship.AddBoardCell(boardCell);
                 boardCell.Init(BoardCellType.ShipCell);
             }
@@ -158,31 +151,33 @@ namespace Battleship
             return _gameMatrix[posX, posY];
         }
 
-
         private void UpdateGameStatusLabel()
         {
             var numberOfUncoveredShips = _ships.Where(x => !x.IsSunk).Count();
 
             if (numberOfUncoveredShips == 0)
             {
-                _gameStatus.Text = $"Congratulations !\r\nThere are no more ships to uncover.";
+                _appGUI.SetMessage($"Congratulations !\r\nThere are no more ships to uncover.");
             }
             else
             {
-                _gameStatus.Text = $"Number of uncovered ships: {numberOfUncoveredShips}";
+                _appGUI.SetMessage($"Number of uncovered ships: {numberOfUncoveredShips}");
             }
         }
 
-        private void TestMode()
+        private void SubscribeToShipEvents(Ship ship)
         {
-            var cells = _gamePanel.Controls.GetEnumerator();
-            while (cells.MoveNext())
-            {
-                var boardCell = (BoardCell)cells.Current;
-                boardCell.PerformClick();
-            }
+            ship.Sunk += OnShipSunk;
+        }
 
-            cells.Reset();
+        private void UnsubscribeToShipEvents(Ship ship)
+        {
+            ship.Sunk -= OnShipSunk;
+        }
+
+        private void OnShipSunk(object? sender, EventArgs e)
+        {
+            UpdateGameStatusLabel();
         }
     }
 }
